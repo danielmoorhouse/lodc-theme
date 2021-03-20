@@ -39,7 +39,7 @@
     </button>
    		  <!-- Brand -->
 
-<a class="navbar-brand" href="/"> <img src="/wp-content/themes/lodc/assets/logos/lodc_logo.png" alt="Language of Dance Centre"> </a>
+<a class="navbar-brand" href="/"> <?php the_header_image_tag(); ?> </a>
 <div class="">
         <?php
         wp_nav_menu( array(
