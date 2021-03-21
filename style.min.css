@@ -2,7 +2,7 @@
 .alignleft{display:inline;float:left;margin-right:1.5em}
 .alignright{display:inline;float:right;margin-left:1.5em}
 .aligncenter{clear:both;display:block;margin-left:auto;margin-right:auto}
-nav.navbar{padding-left:8%;padding-right:8%;padding-top:25px !important;padding-bottom:2 5px;border-bottom:4px solid #f77d11;border-top:4px solid #f77d11}
+nav.navbar{padding-left:8%;padding-right:8%;padding-top:25px !important;padding-bottom:25px;border-bottom:4px solid #f77d11;border-top:4px solid #f77d11}
 ul#menu-primary{font-size:18px !important;color:#fff !important}
 ul#menu-primary li{border-left:2px solid #f77d11}
 ul#menu-primary li:nth-child(1){border-left:0}
