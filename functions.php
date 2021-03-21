@@ -100,6 +100,8 @@ if ( ! function_exists( 'lodc_setup' ) ) :
 				'flex-height' => true,
 			)
 		);
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'post-thumbnails' );
 	}
 endif;
 add_action( 'after_setup_theme', 'lodc_setup' );
@@ -188,3 +190,5 @@ add_action( 'after_setup_theme', 'register_navwalker' );
 register_nav_menus( array(
     'primary' => __( 'Primary Menu', 'lodc' ),
 ) );
+
+

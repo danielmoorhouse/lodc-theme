@@ -1,12 +1,6 @@
 <?php
 /**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
+ * Template Name: BS4 Container-Fluid
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Lodc
@@ -15,9 +9,9 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main container-fluid">
+	<main id="primary" class="container-fluid">
 		<div class="row">
-		<div class="col-md-8 offset-md-0 offset-lg-1 p-4">		
+		<div class="col-lg-12">		
 		<?php
 		while ( have_posts() ) :
 			the_post();
@@ -32,12 +26,8 @@ get_header();
 		endwhile; // End of the loop.
 		?>
 		</div>
-		<div class="col-md-3 p-2" >
-		<?php
-get_sidebar(); ?>
-		</div>
 	</div>
-	</main><!-- #main -->
+	</main><!-- #main --> 
 
 <?php 
 get_footer();

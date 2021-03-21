@@ -2,14 +2,16 @@
 .alignleft{display:inline;float:left;margin-right:1.5em}
 .alignright{display:inline;float:right;margin-left:1.5em}
 .aligncenter{clear:both;display:block;margin-left:auto;margin-right:auto}
-nav.navbar{padding-left:8%;padding-right:8%;padding-top:15px !important;padding-bottom:15px;border-bottom:3px solid #0285fa;border-top:3px solid #0285fa}
+nav.navbar{padding-left:8%;padding-right:8%;padding-top:25px !important;padding-bottom:2 5px;border-bottom:4px solid #f77d11;border-top:4px solid #f77d11}
 ul#menu-primary{font-size:18px !important;color:#fff !important}
-ul#menu-primary li{border-right:2px solid #f77d11}
+ul#menu-primary li{border-left:2px solid #f77d11}
+ul#menu-primary li:nth-child(1){border-left:0}
 ul#menu-primary li a{color:#fff !important}
-footer.site-footer{background-color:#2b2b2b;color:#fff;height:150px;border-top:3px solid #0285fa;position:relative;bottom:0}
+footer.site-footer{background-color:#2b2b2b;color:#fff;height:150px;border-top:4px solid #f77d11;position:relative;bottom:0}
 h1,.h1,.h1,h2,.h2,.h2,h3,.h3,.h3,h4,.h4,.h4{font-family:'Libre Franklin',sans-serif;font-weight:600 !important}
 p{font-family:'Libre Franklin',sans-serif;font-size:18px !important}
 ul li a{font-size:18px !important}
+aside#secondary{border-left:4px solid #0285fa}
 .sticky{display:block}
 .post,.page{margin:0 0 1.5em}
 .updated:not(.published){display:none}
