@@ -11,7 +11,7 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
+	<footer id="colophon" class="container-fluid site-footer">
 		<div class="container site-info">
 			<div style="position:absolute;bottom:10px;left:10px;">
  				<?php

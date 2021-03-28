@@ -16,6 +16,7 @@ get_header();
     <h1 class="archive-title">MEET THE TEAM</h1>
     <hr>
     <br>
+    <!--pull through staff-->
     <h2>STAFF</h2>
     <br>
     <div class="row">
@@ -34,6 +35,7 @@ get_header();
 <br><span class="h2"><?php the_title(); ?></span>
 <hr>
 <p><?php echo wp_kses_post( substr( get_the_excerpt(), 0, 80 ) ); ?></p>
+<p>Interests: <?php echo get_post_meta($post->ID, 'Interests', true); ?></p>
 </div>
 </a>
 </div>
@@ -46,6 +48,7 @@ get_header();
 <?php endif; ?>
 </div>
 
+<!--pull through trustees-->
 <?php
 $category_query_trust = new WP_Query( array( 'category_name' => 'trustee', 'posts_per_page' => '10' ) );
 
@@ -72,6 +75,7 @@ $category_query_trust = new WP_Query( array( 'category_name' => 'trustee', 'post
 <br><span class="h2"><?php the_title(); ?></span>
 <hr>
 <p><?php echo wp_kses_post( substr( get_the_excerpt(), 0, 80 ) ); ?></p>
+<p>Interests: <?php echo get_post_meta($post->ID, 'Interests', true); ?></p>
 </div>
 </a>
 </div>
@@ -84,6 +88,7 @@ $category_query_trust = new WP_Query( array( 'category_name' => 'trustee', 'post
 <?php endif; ?>
 </div>
 
+<!--pull through patrons-->
 <?php
 $category_query_patron = new WP_Query( array( 'category_name' => 'patron', 'posts_per_page' => '10' ) );
 
@@ -109,6 +114,7 @@ $category_query_patron = new WP_Query( array( 'category_name' => 'patron', 'post
 <br><span class="h2"><?php the_title(); ?></span>
 <hr>
 <p><?php echo wp_kses_post( substr( get_the_excerpt(), 0, 80 ) ); ?></p>
+<p>Interests: <?php echo get_post_meta($post->ID, 'Interests', true); ?></p>
 </div>
 </a>
 </div>
