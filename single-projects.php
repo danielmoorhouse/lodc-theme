@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying all single posts
+ * The template for displaying all single project posts
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
@@ -11,6 +11,7 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main container-fluid">
+   
        <div class="row">
 	   <div class="col-md-8 offset-md-1">
 		<?php

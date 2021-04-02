@@ -151,6 +151,12 @@ function lodc_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'lodc_scripts' );
+    // function mygoogleapi_enqueue_scripts()
+    // {
+    //     wp_enqueue_script('js-google', '//maps.googleapis.com/maps/api/js?key=AIzaSyDUdLl8ZQpxn41l__WVz_1SdXptXeyrGv4', null, null);
+    // }
+	// add_action('wp_enqueue_scripts', 'mygoogleapi_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'mygoogleapi_enqueue_scripts');
 
 /**
  * Implement the Custom Header feature.
@@ -190,4 +196,107 @@ add_action( 'after_setup_theme', 'register_navwalker' );
 register_nav_menus( array(
     'primary' => __( 'Primary Menu', 'lodc' ),
 ) );
+
+function mos__update_custom_roles() {
+    if ( get_option( 'custom_roles_version' ) < 1 ) {
+        add_role( 'custom_role', 'Donator', array( 'read' => true, 'level_0' => true ) );
+        update_option( 'custom_roles_version', 1 );
+    }
+}
+
+
+/*
+ERADICATE WP LOGIN FORM TO USE CUSTOM - Main redirection of the default login page */
+function redirect_login_page() {
+	$login_page  = home_url('/login/');
+	$page_viewed = basename($_SERVER['REQUEST_URI']);
+
+	if($page_viewed == "wp-login.php" && $_SERVER['REQUEST_METHOD'] == 'GET') {
+		wp_redirect($login_page);
+		exit;
+	}
+}
+add_action('init','redirect_login_page');
+
+/* Where to go if a login failed */
+function custom_login_failed() {
+	$login_page  = home_url('/login/');
+	wp_redirect($login_page . '?login=failed');
+	exit;
+}
+add_action('wp_login_failed', 'custom_login_failed');
+
+/* Where to go if any of the fields were empty */
+function verify_user_pass($user, $username, $password) {
+	$login_page  = home_url('/login/');
+	if($username == "" || $password == "") {
+		wp_redirect($login_page . "?login=empty");
+		exit;
+	}
+}
+add_filter('authenticate', 'verify_user_pass', 1, 3);
+
+/* What to do on logout */
+function logout_redirect() {
+	$login_page  = home_url('/login/');
+	wp_redirect($login_page . "?login=false");
+	exit;
+}
+add_action('wp_logout','logout_redirect');
+
+/**
+ * Replace "themeslug" with your theme's unique slug
+ *
+ * @see http://codex.wordpress.org/Theme_Review#Guidelines
+ */
+//add_filter( 'single_template', 'lodc_single_template' );
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+// Our custom post type function
+function create_posttype() {
+ 
+    register_post_type( 'events',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Events' ),
+                'singular_name' => __( 'Event' )
+            ),
+            'public' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			//'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+            'rewrite' => array('slug' => 'events'),
+            'show_in_rest' => true
+ 
+        )
+    );
+	register_post_type( 'projects',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Projects' ),
+                'singular_name' => __( 'Project' )
+            ),
+            'public' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			//'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+            'rewrite' => array('slug' => 'projects'),
+            'show_in_rest' => true
+ 
+        )
+    );
+}
+
 
