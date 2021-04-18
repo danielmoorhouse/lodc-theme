@@ -22,19 +22,19 @@ wp_reset_postdata();
 
 <?php if(count($slides) > 0) { ?>
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    
-    <ol class="carousel-indicators">
+<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+<ol class="carousel-indicators">
         <?php for($i=0;$i<count($slides);$i++) { ?>
-        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i ?>" <?php if($i==0) { ?>class="active"<?php } ?>></li>
+        <li data-target="#carousel" data-slide-to="<?php echo $i ?>" <?php if($i==0) { ?>class="active"<?php } ?>></li>
         <?php } ?>
     </ol>
+
 
     <div class="carousel-inner" role="listbox">
         <?php $i=0; foreach($slides as $slide) { extract($slide); ?>
         <div class="carousel-item <?php if($i == 0) { ?>active<?php } ?>">
             <img src="<?php echo $image ?>" alt="<?php echo esc_attr($title); ?>">
-            <div class="carousel-caption text-left "><h3><?php echo $title; ?></h3><br><p><?php echo $excerpt; ?></p></div>
+            <div class="carousel-caption"><h3><?php echo $title; ?></h3><br><p><?php echo $excerpt; ?></p></div>
         </div>
         <?php $i++; } ?>
     </div>

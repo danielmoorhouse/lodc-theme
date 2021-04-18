@@ -47,6 +47,22 @@ if ( ! function_exists( 'lodc_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+function new_excerpt_length($length) {
+return 15;
+}
+add_filter('excerpt_length', 'new_excerpt_length');
+//modify read more link text
+function modify_read_more_link() {
+    return '<a class="more-link" href="' . get_permalink() . '">Your Read More Link Text</a>';
+}
+add_filter( 'the_content_more_link', 'modify_read_more_link' );
+
+add_image_size( 'sidebar-thumb', 120, 120, true ); // Hard Crop Mode
+add_image_size( 'homepage-thumb', 150, 100 ); // Soft Crop Mode#
+add_image_size( 'team-thumb', 200,200 ); // Soft Crop Mode
+add_image_size( 'singlepost-thumb', 590, 9999 ); // Unlimited Height Mode
+
+
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
@@ -123,40 +139,66 @@ add_action( 'after_setup_theme', 'lodc_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function lodc_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'lodc' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'lodc' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'lodc_widgets_init' );
+			function lodc_widgets_init() {
+				register_sidebar(
+					array(
+						'name'          => esc_html__( 'Sidebar', 'lodc' ),
+						'id'            => 'sidebar-1',
+						'description'   => esc_html__( 'Add widgets here.', 'lodc' ),
+						'before_widget' => '<section id="%1$s" class="widget %2$s">',
+						'after_widget'  => '</section>',
+						'before_title'  => '<h2 class="widget-title">',
+						'after_title'   => '</h2>',
+					)
+				);
+				register_sidebar( array(
+			'name' => 'Footer Sidebar 1',
+			'id' => 'footer-sidebar-1',
+			'description' => 'Appears in the footer area',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget' => '</aside>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+			) );
+			register_sidebar( array(
+			'name' => 'Footer Sidebar 2',
+			'id' => 'footer-sidebar-2',
+			'description' => 'Appears in the footer area',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget' => '</aside>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+			) );
+			register_sidebar( array(
+			'name' => 'Footer Sidebar 3',
+			'id' => 'footer-sidebar-3',
+			'description' => 'Appears in the footer area',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget' => '</aside>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+			) );
+			}
+			add_action( 'widgets_init', 'lodc_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function lodc_scripts() {
-	wp_enqueue_style( 'lodc-style', get_stylesheet_uri() );
-	wp_enqueue_script( 'lodc-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery'), '20151215', true );
-	wp_enqueue_script( 'lodc-vendor-scripts', get_template_directory_uri() . '/assets/js/vendor.min.js', array('jquery'), '20151215', true );
-	wp_enqueue_script( 'lodc-custom-scripts', get_template_directory_uri() . '/assets/js/custom.min.js', array('customize-preview'), '20151215', true );
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'lodc_scripts' );
-    // function mygoogleapi_enqueue_scripts()
-    // {
-    //     wp_enqueue_script('js-google', '//maps.googleapis.com/maps/api/js?key=AIzaSyDUdLl8ZQpxn41l__WVz_1SdXptXeyrGv4', null, null);
-    // }
-	// add_action('wp_enqueue_scripts', 'mygoogleapi_enqueue_scripts');
-add_action('wp_enqueue_scripts', 'mygoogleapi_enqueue_scripts');
+		/**
+		 * Enqueue scripts and styles.
+		 */
+		function lodc_scripts() {
+			wp_enqueue_style( 'lodc-style', get_stylesheet_uri() );
+			wp_enqueue_script( 'lodc-jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', true );
+			wp_enqueue_script( 'lodc-bs4', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array('jquery'), '20151215', true );
+
+			// wp_enqueue_script( 'lodc-vendor-scripts', get_template_directory_uri() . '/assets/js/vendor.min.js', array('jquery'), '20151215', true );
+			// wp_enqueue_script( 'lodc-custom-scripts', get_template_directory_uri() . '/assets/js/custom.min.js', array('customize-preview'), '20151215', true );
+			wp_enqueue_script( 'lodc-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery'), '20151215', true );
+
+			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+				wp_enqueue_script( 'comment-reply' );
+			}
+		}
+		add_action( 'wp_enqueue_scripts', 'lodc_scripts' );
+
 
 /**
  * Implement the Custom Header feature.
@@ -276,27 +318,18 @@ function create_posttype() {
  
         )
     );
-	register_post_type( 'projects',
-    // CPT Options
-        array(
-            'labels' => array(
-                'name' => __( 'Projects' ),
-                'singular_name' => __( 'Project' )
-            ),
-            'public' => true,
-			'show_ui'            => true,
-			'show_in_menu'       => true,
-			'query_var'          => true,
-			//'capability_type'    => 'post',
-			'has_archive'        => true,
-			'hierarchical'       => false,
-			'menu_position'      => null,
-			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
-            'rewrite' => array('slug' => 'projects'),
-            'show_in_rest' => true
- 
-        )
-    );
+
 }
 
 
+// Nic's api key
+// function my_acf_init() {
+//     acf_update_setting('google_api_key', 'AIzaSyDIr7y62nJjdkLjUQ4Dm61_bhvqgEzgitg');
+// }
+// add_action('acf/init', 'my_acf_init');
+
+//Dan's api key
+function my_acf_init() {
+    acf_update_setting('google_api_key', 'AIzaSyDUdLl8ZQpxn41l__WVz_1SdXptXeyrGv4');
+}
+add_action('acf/init', 'my_acf_init');

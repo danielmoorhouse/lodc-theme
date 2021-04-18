@@ -10,20 +10,41 @@
  */
 
 ?>
-
-	<footer id="colophon" class="container-fluid site-footer">
-		<div class="container site-info">
-			<div style="position:absolute;bottom:10px;left:10px;">
+<div id="colophon" class="container-fluid site-footer">
+    <div class="row">
+        <div id="footer-sidebar1" class="col-md-4">
+            <?php
+            if(is_active_sidebar('footer-sidebar-1')){
+            dynamic_sidebar('footer-sidebar-1');
+                }
+            ?>
+        </div>
+	    <div id="footer-sidebar2" class="col-md-4">
+            <?php
+                if(is_active_sidebar('footer-sidebar-2')){
+                dynamic_sidebar('footer-sidebar-2');
+            }
+            ?>
+        </div>	    
+        <div id="footer-sidebar3" class="col-md-4 text-center">
+                <?php
+                    if(is_active_sidebar('footer-sidebar-3')){
+                    dynamic_sidebar('footer-sidebar-3');
+                }
+                ?>
+        </div>		    
+	</div>	
+</div>
+<div class="container-fluid copyright">
+	<div class="row">
+	    <div class="col-12">
  				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'MoZone' ), 'MoZone', '<a style="background-color:#fff;padding:3px;" href="#">The MOs</a>' );
+				printf( esc_html__( 'Theme: %1$s by %2$s.', 'MoZone' ), 'MoZone', '<a href="#">The MOs</a>' );
 				?>
-				</div>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
-
+		</div>
+	</div>
+</div><!-- .site-info -->
 <?php wp_footer(); ?>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

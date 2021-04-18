@@ -8,8 +8,9 @@
  */
 
 ?>
-
-<article class="container" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div class="row">
+<div class="col-6 imgpost"><?php lodc_post_thumbnail('<img class="img-fluid">', '>' ); ?></div>
+<div class="col-6 textpost" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
 		if ( is_singular() ) :
@@ -29,9 +30,9 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php lodc_post_thumbnail(); ?>
 
-	<div class="entry-content">
+
+	<div class="entry-content ppost">
 		<?php
 		the_content(
 			sprintf(
@@ -55,9 +56,9 @@
 			)
 		);
 		?>
+		</div>
 	</div><!-- .entry-content -->
-
+</div>
 	<footer class="entry-footer">
 		<?php lodc_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
