@@ -318,6 +318,27 @@ function create_posttype() {
  
         )
     );
+	register_post_type( 'video',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Video' ),
+                'singular_name' => __( 'Video' )
+            ),
+            'public' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			//'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+            'rewrite' => array('slug' => 'video'),
+            'show_in_rest' => true
+ 
+        )
+    );
 
 }
 

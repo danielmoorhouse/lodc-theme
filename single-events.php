@@ -30,7 +30,7 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
-		</div>
+		</div> 
 		<!-- <div class="col-md-3 offset-md-1">
 		<?php //get_sidebar(); ?>
 

@@ -29,6 +29,8 @@ div.carousel-caption{top:70px !important;left:0 !important}
 .bg-grey{background-color:#2b2b2b}
 .white{color:#fff !important}
 .op-7{opacity:.7 !important}
+.iframe-container{overflow:hidden;padding-top:56.25%;position:relative}
+.iframe-container iframe{border:0;height:100%;left:0;position:absolute;top:0;width:100%}
 .text-right{text-align:right !important}
 .carousel-fade .carousel-item{opacity:0 !important;-webkit-transition-duration:.6s !important;transition-duration:.6s !important;-webkit-transition-property:opacity !important;transition-property:opacity !important}
 .carousel-fade .carousel-item.active,.carousel-fade .carousel-item-next.carousel-item-left,.carousel-fade .carousel-item-prev.carousel-item-right{opacity:1 !important}
